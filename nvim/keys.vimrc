@@ -65,8 +65,16 @@ nnoremap <localleader>T :SyntasticToggleMode<CR>
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
 
+nmap <silent> <LocalLeader>H :call RAction("head")<CR>
+imap <silent> <LocalLeader>H :call RAction("head")<CR>
+vmap <silent> <LocalLeader>H :call RAction("head")<CR>
+nmap <silent> <LocalLeader>T :call RAction("table")<CR>
+imap <silent> <LocalLeader>T :call RAction("table")<CR>
+vmap <silent> <LocalLeader>T :call RAction("table")<CR>
+
 " neoterm
 nnoremap <localleader>nt :vertical Tnew<CR>
-autocmd FileType scala nmap <Space> <Plug>(neoterm-repl-send-line)
-autocmd FileType scala xmap <Space> <Plug>(neoterm-repl-send)
+autocmd FileType scala,python nmap <Space> <Plug>(neoterm-repl-send-line)
+autocmd FileType scala,python xmap <Space> <Plug>(neoterm-repl-send)
+
 

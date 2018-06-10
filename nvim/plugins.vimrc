@@ -1,8 +1,6 @@
 " Neoterm
 let g:neoterm_autoscroll = 1
-let g:neoterm_autoinsert = 1
 let g:neoterm_auto_repl_cmd = 0
-
 " Ensime
 "autocmd BufWritePost *.scala silent :EnTypeCheck
 

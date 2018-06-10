@@ -49,4 +49,4 @@ endif
 set nostartofline       " Do not jump to first character with page commands
 
 set ignorecase          " Make searching case insensitive
-set smartcase           " ... unless the query has capital letters.
+set smartcase " ... unless the query has capital letters.

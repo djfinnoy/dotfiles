@@ -1,5 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
+" Transpose
+Plug 'salsifis/vim-transpose'
+
 " Syntastic
 Plug 'vim-syntastic/syntastic'
 
