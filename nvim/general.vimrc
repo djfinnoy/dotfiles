@@ -13,13 +13,8 @@ syntax enable
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-"set background=dark
 colorscheme nord
 highlight LineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE gui=NONE guifg=white guibg=NONE
-
-" Enable folding (za)
-set foldmethod=indent
-set foldlevel=99
 
 " Python
 set tabstop=4

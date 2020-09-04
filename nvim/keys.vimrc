@@ -1,7 +1,7 @@
 " Map the leader key to ,
 let mapleader="\,"
 
-" Easier dollar
+" Easier dollar (Norwegian keyboard)
 map ¤ $
 imap ¤ $
 
@@ -12,7 +12,7 @@ nmap <Leader>a gg0vG$<CR>
 nmap o o<Esc>
 nmap O O<Esc>
 
-" Leader bidings
+" Leader bindings
 noremap <Leader>ev :tabnew $MYVIMRC<CR>
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>O :CtrlPBuffer<CR>
@@ -51,30 +51,3 @@ nnoremap <C-x> :bdelete<CR>
 
 " Exit neovim terminal with Esc
 tnoremap <Esc> <C-\><C-n>
-"
-" Markdown
-autocmd FileType markdown nnoremap <buffer> <Leader>l :Pandoc latex -s<CR>
-
-" Ensime
-nnoremap <localleader>t :EnTypeCheck<CR>
-
-" Syntastic
-nnoremap <localleader>T :SyntasticToggleMode<CR>
-
-" R
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
-
-nmap <silent> <LocalLeader>H :call RAction("head")<CR>
-imap <silent> <LocalLeader>H :call RAction("head")<CR>
-vmap <silent> <LocalLeader>H :call RAction("head")<CR>
-nmap <silent> <LocalLeader>T :call RAction("table")<CR>
-imap <silent> <LocalLeader>T :call RAction("table")<CR>
-vmap <silent> <LocalLeader>T :call RAction("table")<CR>
-
-" neoterm
-nnoremap <localleader>nt :vertical Tnew<CR>
-autocmd FileType scala,python nmap <Space> <Plug>(neoterm-repl-send-line)
-autocmd FileType scala,python xmap <Space> <Plug>(neoterm-repl-send)
-
-
