@@ -31,7 +31,9 @@ alias R='R --no-save'
 
 # oh-my-zsh
 export ZSH="/home/df/.oh-my-zsh"
-ZSH_THEME="awesomepanda"
+ZSH_THEME="agnoster"
+DEFAULT_USER=df
+prompt_context(){}
 plugins=(git tmux)
 source $ZSH/oh-my-zsh.sh
 
