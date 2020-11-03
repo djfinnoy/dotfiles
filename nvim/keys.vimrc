@@ -41,8 +41,8 @@ map <silent> <A-k> <C-W>+
 map <silent> <A-l> <C-w>>
 
 " Navigate buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+nnoremap gt :bnext<CR>
+nnoremap gT :bprevious<CR>
 nnoremap <C-x> :bdelete<CR>
 
 " Exit neovim terminal with Esc
