@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Color schemes
 Plug 'arcticicestudio/nord-vim'
+Plug 'altercation/vim-colors-solarized'
 
 " Status line enhancement
 Plug 'https://github.com/vim-airline/vim-airline.git'
@@ -13,7 +14,7 @@ Plug 'https://github.com/scrooloose/nerdtree.git'
 " Auto-close brackets {([
 Plug 'https://github.com/Raimondi/delimitMate'
 
-" Ctrlp for file navigation
+" FZF / Ctrlp for file navigat"on
 Plug 'https://github.com/kien/ctrlp.vim.git'
 
 " Buffer overview
