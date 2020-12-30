@@ -6,3 +6,6 @@ alias kns="kubectl ns"
 alias tf="terraform"
 alias tg="terragrunt"
 
+# R stuff
+alias R="R --no-save"
+
