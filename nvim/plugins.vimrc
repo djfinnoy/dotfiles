@@ -1,5 +1,6 @@
 " Airline
 let g:airline_theme='nord'
+"
 "let g:airline_solarized_bg='dark'
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#tabline#enabled = 1
@@ -21,3 +22,7 @@ let g:deoplete#enable_at_startup = 1
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'c'  " default dir = current file
+
+" vim-terraform
+let g:terraform_align=1  " align settings automatically
+let g:terraform_fmt_on_save=1  " terraform fmt on save

@@ -5,11 +5,9 @@ let mapleader="\,"
 map ¤ $
 imap ¤ $
 
-" Select all with ,a
-nmap <Leader>a gg0vG$<CR>
-
 " Leader bindings
 noremap <Leader>ev :tabnew $MYVIMRC<CR>
+noremap <Leader>EV :so %<CR>
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>O :CtrlPBuffer<CR>
 noremap <Leader>n :nohlsearch<CR>
@@ -47,3 +45,4 @@ nnoremap <C-x> :bdelete<CR>
 
 " Exit neovim terminal with Esc
 tnoremap <Esc> <C-\><C-n>
+
