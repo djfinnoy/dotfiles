@@ -28,9 +28,8 @@ Plug 'https://github.com/ervandew/supertab.git'
 " Auto-completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" terraform syntax highlighting
-Plug 'hashivim/vim-terraform'
-
+" Vim (programming) language packs
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 

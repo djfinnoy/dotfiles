@@ -42,7 +42,17 @@ set shiftwidth=2
 set expandtab
 set autoindent
 set fileformat=unix
-
-
 set ignorecase          " Make searching case insensitive
-set smartcase " ... unless the query has capital letters.
+set smartcase           " ... unless the query has capital letters.
+
+" Cursorline
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END 
+
+" Auto insert mode in terminal panes
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
+
