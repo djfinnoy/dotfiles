@@ -31,6 +31,10 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Vim (programming) language packs
 Plug 'sheerun/vim-polyglot'
 
+" Markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+
 call plug#end()
 
 source $HOME/.config/nvim/general.vimrc

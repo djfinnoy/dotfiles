@@ -1,10 +1,16 @@
-CLUSTER="$1"
-PROJECT="$2"
-if [ -z "$3" ]; then
-  REGION=europe-north1
-else
-  REGION="$3"
-fi
+# Configure kubectl for a given Google Kubernetes Engine cluster
 
-gcloud container clusters get-credentials $CLUSTER --region europe-north1 --project $argv[2]
+kpull () {
+
+  CLUSTER="$1"
+  PROJECT="$2"
+  if [ -z "$3" ]; then
+    REGION=europe-north1
+  else
+    REGION="$3"
+  fi
+  
+  gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT
+  
+}
 

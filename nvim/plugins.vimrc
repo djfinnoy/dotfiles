@@ -30,3 +30,5 @@ let g:buffergator_viewport_split_policy = "T"
 " Close nerdtree after opening a file
 let NERDTreeQuitOnOpen=1
 
+" CtrlP
+let g:ctrlp_show_hidden = 1

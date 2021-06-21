@@ -7,9 +7,9 @@ imap ¤ $
 
 " Leader bindings
 noremap <Leader>ev :vsp $MYVIMRC<CR>
-noremap <Leader>EV :so %<CR>
+noremap <Leader>EV :source $MYVIMRC<CR>
 nnoremap <Leader>o :CtrlP<CR>
-nnoremap <Leader>O :CtrlPBuffer<CR>
+nnoremap <Leader>O :CtrlP 
 noremap <Leader>n :nohlsearch<CR>
 nmap <Leader>s :%s//g<Left><Left>
 nmap <Leader>r :%s/\%V/g<Left><Left>
@@ -50,14 +50,25 @@ map <silent> <A-k> <C-W>+
 map <silent> <A-l> <C-w>>
 
 " Close all tabs except current
-nnoremap <Leader>xa :w <bar> %bd <bar> e# <bar> bd# <CR>
+nnoremap <Leader>xa :w <bar> %bd! <bar> e# <bar> bd# <CR><CR>
 
 " Terminal keys
-tnoremap <C-C> <C-\><C-n>
+tnoremap <C-Z> <C-\><C-n>
 tnoremap <C-K> <C-\><C-n><C-W><C-K>
 tnoremap <C-L> <C-\><C-n><C-W><C-L>
 tnoremap <C-H> <C-\><C-n><C-W><C-H>
 tnoremap <C-J> <C-\><C-n><C-W><C-J>
 tnoremap <C-X> <C-\><C-n>:q!<CR>
 nnoremap <Leader>z :sp term://zsh <bar> :resize 20<CR>
+set <up>=^[OA
+set <down>=^[OB
+set <right>=^[OC
+set <left>=^[OD
+
+" Prevent Ctrl+z from closing nvim outside of a terminal window
+nnoremap <c-z> <nop>
+
+" Preview Markdown file
+map <Leader>md :MarkdownPreview<CR>
+
 

@@ -1,4 +1,4 @@
-# Kubectl stuff
+# kubectl stuff
 alias kcx="kubectl ctx"
 alias kns="kubectl ns"
 
@@ -6,6 +6,9 @@ alias kns="kubectl ns"
 alias tf="terraform"
 alias tg="terragrunt"
 
-# R stuff
+# tmux stuff
+alias tksa="tmux kill-session -a"
+
+# R tsuff
 alias R="R --no-save"
 

@@ -1,0 +1,8 @@
+# Create and move to a new tmux session, from within an existing tmux session
+ts () {
+
+  tmux new-session -d -s $1
+  tmux switch-client -t $1
+
+}
+

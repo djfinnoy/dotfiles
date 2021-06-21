@@ -50,9 +50,12 @@ augroup CursorLineOnlyInActiveWindow
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
-augroup END 
+augroup END
 
 " Auto insert mode in terminal panes
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
 
+" Syntax highlighting for *.tpl
+au BufRead,BufNewFile *.y*ml.tpl set filetype=yaml
+au BufRead,BufNewFile *.json.tpl set filetype=json

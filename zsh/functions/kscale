@@ -1,0 +1,4 @@
+kscale () {
+  gcloud container clusters resize bulder-gke --region=europe-north1 --project=$1 --num-nodes=$2
+}
+

@@ -1,0 +1,10 @@
+# List all resources in a namespace (useful when something is preventing you from deleting the namesapce)
+
+knsdebug () {
+
+  NAMESPACE="$1" 
+  kubectl api-resources --verbs=list --namespaced -o name \
+    | xargs -n 1 kubectl get --show-kind --ignore-not-found -n $NAMESPACE
+  
+}
+
