@@ -1,0 +1,10 @@
+# Rename the current kubectl context
+
+kdelete () {
+  CONTEXT=$(kubectl config current-context | tr -d '\r')
+  CLUSTER=$(kubectl config view | yq e  ".contexts[] | select(.name == \"$CONTEXT\") | .context.cluster" -)
+
+  kubectl config delete-cluster $CLUSTER
+  kubectl config delete-context $CONTEXT
+}
+
