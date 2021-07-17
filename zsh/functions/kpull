@@ -5,12 +5,12 @@ kpull () {
   CLUSTER="$1"
   PROJECT="$2"
   if [ -z "$3" ]; then
-    REGION=europe-north1
+    REGION=europe-west1
   else
     REGION="$3"
   fi
   
   gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT
-  
+  kubectl config rename-context $(kubectl config current-context | tr -d '\r') "$PROJECT-$CLUSTER"
 }
 

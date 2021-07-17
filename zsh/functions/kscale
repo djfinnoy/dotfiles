@@ -1,4 +1,14 @@
 kscale () {
-  gcloud container clusters resize bulder-gke --region=europe-north1 --project=$1 --num-nodes=$2
+  CONTEXT=$(kubectl config current-context | tr -d '\r')
+  CLUSTER=$(kubectl config view | yq e  ".contexts[] | select(.name == \"$CONTEXT\") | .context.cluster" -)
+  PROJECT=$(echo $CLUSTER | cut -d "_" -f 2)
+  LOCATION=$(echo $CLUSTER | cut -d "_" -f 3)
+  NAME=$(echo $CLUSTER | cut -d "_" -f 4)
+
+  if [ -z "$2" ]; then
+    gcloud container clusters resize $NAME --region=$LOCATION --project=$PROJECT --num-nodes=$1
+  else
+    gcloud container clusters resize $NAME --region=$LOCATION --project=$PROJECT --num-nodes=$1 --node-pool=$2
+  fi
 }
 
