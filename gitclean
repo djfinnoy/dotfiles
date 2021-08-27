@@ -1,0 +1,15 @@
+# Delete all local branches except current branch
+
+gitclean () {
+
+  CURRENT=$(git branch --show-current)
+  OTHER=$(git branch | grep -v $CURRENT)
+  COMMAND=( git branch -D )
+
+  for BRANCH in $OTHER; do
+    COMMAND+=( "$BRANCH" )
+  done
+
+  echo ${COMMAND[@]} | bash -
+
+}
