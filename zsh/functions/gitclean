@@ -3,10 +3,9 @@
 gitclean () {
 
   CURRENT=$(git branch --show-current)
-  OTHER=$(git branch | grep -v $CURRENT)
 
-  for BRANCH in $OTHER; do
-    git branch -D "$BRANCH"
+  for BRANCH in $(git branch | grep -v $CURRENT); do
+    git branch -D $BRANCH
   done
 
 }
