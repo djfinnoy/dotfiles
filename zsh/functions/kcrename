@@ -1,0 +1,8 @@
+# Rename the current kubectl context
+
+kcrename () {
+
+  kubectl config rename-context $(kubectl config current-context | tr -d '\r') $1
+
+}
+
