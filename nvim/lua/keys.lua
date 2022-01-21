@@ -1,6 +1,6 @@
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
-  if opts theni options = vim.tbl_extend('force', options, opts) end
+  if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 local opt = vim.opt
@@ -20,11 +20,14 @@ map('n', '<Leader>ev', ':vsp $MYVIMRC<CR>')
 -- Clear search
 map('n', '<Leader>n', ':nohlsearch<CR>')
 
+-- Easier dollar (Norwegian keyboard)
+map('', '¤', '$')
+
 -- Reseize panes
-map('', '<A-H>', '<C-W><', {silent})
-map('', '<A-J>', '<C-W>-', {silent})
-map('', '<A-K>', '<C-W>+', {silent})
-map('', '<A-L>', '<C-W>>', {silent})
+map('', '<A-h>', '<C-W><', {silent})
+map('', '<A-j>', '<C-W>-', {silent})
+map('', '<A-k>', '<C-W>+', {silent})
+map('', '<A-l>', '<C-W>>', {silent})
 
 -- Navigate panes / buffers
 map('n', '<C-H>', '<C-W><C-H>')
@@ -54,13 +57,31 @@ map('t', '<C-L>', [[<C-\><C-n><C-W><C-L>]])
 -- Plugin keybindings
 --
 
-map('n', '<C-N>', ':NvimTreeToggle<CR> | :NvimTreeRefresh<CR>')
-map('n', '<Leader>z', ':sp | :Tnew | :resize 36<CR>')
-
 --- Telescope
-map('', '<Leader>f', ':Telescope file_browser<CR>')
-map('', '<Leader>F', ':Telescope find_files<CR>')
+map('', '<Leader>f', ':Telescope find_files<CR>')
 map('', '<Leader>b', ':Telescope buffers<CR>')
+map('', '<Leader>F', '<cmd>lua require \'telescope\'.extensions.file_browser.file_browser()<CR>')
 
+-- Neoterm
+map('n', '<Leader>z', ':sp | :Tnew<CR>')
+map('n', ' ', ':TREPLSendLine<CR>')
+map('v', ' ', ':TREPLSendSelection<CR>')
 
---TODO: https://ustrajunior.com/posts/reloading-neovim-config-with-telescope/
+-- Markdown preview
+map('n', '<Leader>md', ':MarkdownPreviewToggle<CR>')
+
+-- Lightspeed
+map('n', 'c', 'cl')  -- Make `c` behave like `s` does without the lightspeed plugin
+
+-- Toggle LSP diagnostics
+vim.g.diagnostics_visible = true
+function _G.toggle_diagnostics()
+  if vim.g.diagnostics_visible then
+    vim.g.diagnostics_visible = false
+    vim.diagnostic.disable()
+  else
+    vim.g.diagnostics_visible = true
+    vim.diagnostic.enable()
+  end
+end
+vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>l', ':call v:lua.toggle_diagnostics()<CR>', {silent=true, noremap=true})

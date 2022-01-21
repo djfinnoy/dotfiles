@@ -1,10 +1,3 @@
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
-
 return require('packer').startup(function()
   -- Package manager
   use 'wbthomason/packer.nvim'
@@ -17,16 +10,7 @@ return require('packer').startup(function()
   }
   use {
     'kdheepak/tabline.nvim',
-    config = function()
-      require'tabline'.setup {
-        enable = true,
-      }
-      vim.cmd[[
-        set guioptions-=e " Use showtabline in gui vim
-        set sessionoptions+=tabpages,globals " store tabpages and globals in session
-      ]]
-    end,
-    requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
+    requires = { {'kyazdani42/nvim-web-devicons', opt = true} }
   }
 
   -- Fuzzy finder
@@ -38,6 +22,8 @@ return require('packer').startup(function()
       {'sharkdp/fd'}
     }
   }
+  use 'nvim-telescope/telescope-file-browser.nvim'
+
   --
   -- Language server stuff
   use {
@@ -47,6 +33,18 @@ return require('packer').startup(function()
 
   -- Misc
   use 'nvim-treesitter/nvim-treesitter'        -- Syntax highlighting
+  use 'Raimondi/delimitMate'                   -- Auto-close bracket
+  use 'kassio/neoterm'                         -- Terminal with REPL
+  use 'ntpeters/vim-better-whitespace'         -- Handle whitespace
+  use 'ggandor/lightspeed.nvim'
+  use 'lambdalisue/suda.vim'
+  use 'hashivim/vim-terraform'
+  use 'elixir-editors/vim-elixir'
+  use {
+      'iamcco/markdown-preview.nvim',
+      run = function() vim.fn['mkdp#util#install']() end,
+      ft = {'markdown'}
+  }
   use {                                        -- Auto-completions
     'hrsh7th/nvim-cmp',
     requires = {
@@ -58,14 +56,5 @@ return require('packer').startup(function()
       'hrsh7th/vim-vsnip'
     }
   }
-  use 'Raimondi/delimitMate'                   -- Auto-close bracket
-  use 'kassio/neoterm'                         -- Terminal with REPL
-  use 'ntpeters/vim-better-whitespace'         -- Handle whitespace
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
-  use 'ggandor/lightspeed.nvim'
-
 end)
 
