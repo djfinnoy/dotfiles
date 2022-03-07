@@ -9,19 +9,8 @@ local opt = vim.opt
 --
 -- Neovim keybindings
 --
-
 -- Map leader key to ,
 vim.g.mapleader = ','
-
-
--- Open / neovim configuration
-map('n', '<Leader>ev', ':vsp $MYVIMRC<CR>')
-
--- Clear search
-map('n', '<Leader>n', ':nohlsearch<CR>')
-
--- Easier dollar (Norwegian keyboard)
-map('', '¤', '$')
 
 -- Reseize panes
 map('', '<A-h>', '<C-W><', {silent})
@@ -34,7 +23,7 @@ map('n', '<C-H>', '<C-W><C-H>')
 map('n', '<C-J>', '<C-W><C-J>')
 map('n', '<C-K>', '<C-W><C-K>')
 map('n', '<C-L>', '<C-W><C-L>')
-map('n', '<C-x>', ':bdelete<CR>')
+map('n', '<C-x>', ':bdelete!<CR>')
 map('n', 'gt', ':bnext<CR>')
 map('n', 'gT', ':bprev<CR>')
 
@@ -52,6 +41,11 @@ map('t', '<C-J>', [[<C-\><C-n><C-W><C-J>]])
 map('t', '<C-K>', [[<C-\><C-n><C-W><C-K>]])
 map('t', '<C-L>', [[<C-\><C-n><C-W><C-L>]])
 
+-- Misc
+map('n', '<Leader>ev', ':vsp $MYVIMRC<CR>')
+map('n', '<Leader>n', ':nohlsearch<CR>')
+map('', '¤', '$')
+
 
 --
 -- Plugin keybindings
@@ -60,10 +54,12 @@ map('t', '<C-L>', [[<C-\><C-n><C-W><C-L>]])
 --- Telescope
 map('', '<Leader>f', ':Telescope find_files<CR>')
 map('', '<Leader>b', ':Telescope buffers<CR>')
+map('', '<Leader>s', ':Telescope live_grep<CR>')
 map('', '<Leader>F', '<cmd>lua require \'telescope\'.extensions.file_browser.file_browser()<CR>')
+map('n', '<Leader>p', ':Telescope neoclip<CR>')
 
 -- Neoterm
-map('n', '<Leader>z', ':sp | :Tnew<CR>')
+map('n', '<Leader>z', ':sp | :Tnew<CR> | :set ma<CR>')
 map('n', ' ', ':TREPLSendLine<CR>')
 map('v', ' ', ':TREPLSendSelection<CR>')
 
@@ -84,4 +80,5 @@ function _G.toggle_diagnostics()
     vim.diagnostic.enable()
   end
 end
-vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>l', ':call v:lua.toggle_diagnostics()<CR>', {silent=true, noremap=true})
+map('n', '<Leader>l', ':call v:lua.toggle_diagnostics()<CR>', {silent})
+

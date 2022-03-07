@@ -23,10 +23,16 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
 DEFAULT_USER=df
 prompt_context(){}
-plugins=(git tmux kubectl asdf)
+plugins=(git tmux kubectl asdf terraform)
+
+# Completions
 source $ZSH/oh-my-zsh.sh
 source <(kubectl completion zsh)
+source "$(asdf where gcloud)/completion.zsh.inc"
+source "$(asdf where gcloud)/path.zsh.inc"
 
-# misc startup
+# misc
 unalias ts  # tmux plugin alias, replaced by function
+RPROMPT='$(tf_prompt_info)'
+eval "$(direnv hook zsh)"
 

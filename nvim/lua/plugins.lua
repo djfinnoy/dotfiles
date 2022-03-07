@@ -3,7 +3,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Appearance
-  use 'arcticicestudio/nord-vim'         -- Colorscheme
+  use 'arcticicestudio/nord-vim'  -- Colorscheme
   use {
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -55,6 +55,15 @@ return require('packer').startup(function()
       'hrsh7th/cmp-vsnip',
       'hrsh7th/vim-vsnip'
     }
+  }
+  use {
+    "AckslD/nvim-neoclip.lua",
+    requires = {
+      {'nvim-telescope/telescope.nvim'},
+    },
+    config = function()
+      require('neoclip').setup()
+    end,
   }
 end)
 

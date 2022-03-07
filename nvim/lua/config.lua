@@ -179,3 +179,5 @@ require'nvim-treesitter.configs'.setup {
 vim.g.terraform_align = 1
 vim.g.terraform_fmt_on_save = 1
 
+-- neoclip
+require'telescope'.load_extension('neoclip')
