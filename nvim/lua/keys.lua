@@ -60,8 +60,8 @@ map('n', '<Leader>p', ':Telescope neoclip<CR>')
 
 -- Neoterm
 map('n', '<Leader>z', ':sp | :Tnew<CR> | :set ma<CR>')
-map('n', ' ', ':TREPLSendLine<CR>')
-map('v', ' ', ':TREPLSendSelection<CR>')
+map('n', '<C-E>', ':TREPLSendLine<CR>')
+map('v', '<C-E>', ':TREPLSendSelection<CR>')
 
 -- Markdown preview
 map('n', '<Leader>md', ':MarkdownPreviewToggle<CR>')

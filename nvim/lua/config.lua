@@ -22,7 +22,7 @@ opt.tabstop = 2                     -- Number of spaces tabs count for
 opt.termguicolors = true            -- True color support
 opt.wrap = false                    -- Disable line wrap
 
----- Cursorline in active pane
+-- Cursorline in active pane
 vim.api.nvim_command([[
   augroup CursorLineOnlyInActiveWindow
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -81,6 +81,7 @@ local servers = {
   "gopls",
   "terraformls",
   "yamlls",
+  "jedi_language_server"
 }
 
 for _, name in pairs(servers) do

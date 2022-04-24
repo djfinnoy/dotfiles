@@ -1,0 +1,12 @@
+# Upgrade an asdf package
+
+asdfu () {
+
+  PACKAGE="$1"
+  LATEST=$(asdf latest "$PACKAGE")
+  CURRENT=$(asdf current "$PACKAGE" | awk '{print $2}')
+
+  asdf install "$PACKAGE" "$LATEST"
+  asdf global "$PACKAGE" "$LATEST"
+  asdf uninstall "$PACKAGE" "$CURRENT"
+}
