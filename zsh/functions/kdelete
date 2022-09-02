@@ -6,5 +6,6 @@ kdelete () {
 
   kubectl config delete-cluster $CLUSTER
   kubectl config delete-context $CONTEXT
+  kubectl config delete-user $CONTEXT
 }
 

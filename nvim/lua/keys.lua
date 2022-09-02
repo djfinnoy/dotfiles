@@ -45,7 +45,7 @@ map('t', '<C-L>', [[<C-\><C-n><C-W><C-L>]])
 map('n', '<Leader>ev', ':vsp $MYVIMRC<CR>')
 map('n', '<Leader>n', ':nohlsearch<CR>')
 map('', '¤', '$')
-
+map('i', '<C-e>', '|>')
 
 --
 -- Plugin keybindings
@@ -60,8 +60,9 @@ map('n', '<Leader>p', ':Telescope neoclip<CR>')
 
 -- Neoterm
 map('n', '<Leader>z', ':sp | :Tnew<CR> | :set ma<CR>')
-map('n', '<C-E>', ':TREPLSendLine<CR>')
-map('v', '<C-E>', ':TREPLSendSelection<CR>')
+map('n', '<A-e>', ':TREPLSendFile<CR>')
+map('n', '<C-e>', ':TREPLSendLine<CR>')
+map('v', '<C-e>', ':TREPLSendSelection<CR>')
 
 -- Markdown preview
 map('n', '<Leader>md', ':MarkdownPreviewToggle<CR>')
