@@ -1,0 +1,7 @@
+regolith.look.path: /usr/share/regolith-look/nord
+gnome.terminal.font: Cousine Nerd Font 12
+org.gnome.desktop.interface font-name: Sans 12
+gtk.font_name: Sans 12
+gtk.monospace_font_name: Sans 12
+regolith.wallpaper.file: /home/df/Pictures/wp.jpg
+regolith.lockscreen.wallpaper.file: /home/df/Pictures/wp.jpg
