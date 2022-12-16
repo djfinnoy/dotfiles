@@ -1,5 +1,6 @@
 regolith.look.path: /usr/share/regolith-look/nord
 gnome.terminal.font: Cousine Nerd Font 12
+gnome.terminal.update: false
 org.gnome.desktop.interface font-name: Sans 12
 gtk.font_name: Sans 12
 gtk.monospace_font_name: Sans 12
