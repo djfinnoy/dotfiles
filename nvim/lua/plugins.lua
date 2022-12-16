@@ -3,7 +3,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Appearance
-  use 'arcticicestudio/nord-vim'  -- Colorscheme
+  use 'shaunsingh/nord.nvim'  -- Colorscheme
   use {
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -27,10 +27,11 @@ return require('packer').startup(function()
   --
   -- Language server stuff
   use {
-    'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer'
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
   }
-
+  --
   -- Misc
   use 'nvim-treesitter/nvim-treesitter'        -- Syntax highlighting
   use 'Raimondi/delimitMate'                   -- Auto-close bracket

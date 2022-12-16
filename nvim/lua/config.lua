@@ -50,7 +50,10 @@ vim.api.nvim_command([[
 --
 
 --- Nord
-cmd 'colorscheme nord'
+vim.g.nord_borders = true
+vim.g.nord_bold = false
+vim.g.nord_italic = false
+require('nord').set()
 
 --- Lua line / tabline
 require'lualine'.setup {
@@ -66,33 +69,39 @@ require'tabline'.setup {
   }
 }
 
--- nvim-lsp-installer
-local lsp_installer = require "nvim-lsp-installer"
+-- mason / lsp-config
+require("mason").setup()
+require("mason-lspconfig").setup()
 
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
-    server:setup(opts)
-end)
+--- language servers
+require("mason-lspconfig").setup({
+    ensure_installed = {
+      "sumneko_lua",
+      "bashls",
+      "elixirls",
+      "gopls",
+      "terraformls",
+      "yamlls",
+      "jedi_language_server"
+    }
+})
 
--- Include the servers you want to have installed by default below
-local servers = {
-  "bashls",
-  "elixirls",
-  "gopls",
-  "terraformls",
-  "yamlls",
-  "jedi_language_server"
+-- nvim-tree-sitter
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+  },
+  ensure_installed = {
+    "bash",
+    "dockerfile",
+    "go",
+    "hcl",
+    "json",
+    "yaml",
+    "elixir",
+    "lua"
+  }
 }
-
-for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found then
-    if not server:is_installed() then
-      print("Installing " .. name)
-      server:install()
-    end
-  end
-end
 
 -- telescope
 require('telescope').setup {
@@ -112,6 +121,7 @@ require('telescope').setup {
 vim.g.strip_whitespace_on_save = 1
 vim.g.strip_whitespace_confirm = 0
 vim.g.better_whitespace_guicolor = 'Gray'
+vim.g.current_line_whitespace_disabled_soft = 1
 
 -- nvim-cmp (autocompletions)
 opt.completeopt = "menu,menuone,noselect"
@@ -150,35 +160,10 @@ cmp.setup.cmdline(':', {
   })
 })
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['elixirls'].setup {
-  capabilities = capabilities,
-  cmd = { "/home/df/.local/share/nvim/lsp_servers/elixir/elixir-ls/language_server.sh" };
-}
-require('lspconfig')['terraformls'].setup {
-  capabilities = capabilities
-}
-
-
--- nvim-tree-sitter
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true
-  },
-  ensure_installed = {
-    "bash",
-    "dockerfile",
-    "go",
-    "hcl",
-    "json",
-    "yaml"
-  },
-  ignore_install = { "elixir", "lua" }
-}
-
 -- vim-terraform
 vim.g.terraform_align = 1
 vim.g.terraform_fmt_on_save = 1
 
 -- neoclip
 require'telescope'.load_extension('neoclip')
+

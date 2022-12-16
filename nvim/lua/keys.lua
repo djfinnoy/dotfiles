@@ -5,7 +5,6 @@ local function map(mode, lhs, rhs, opts)
 end
 local opt = vim.opt
 
-
 --
 -- Neovim keybindings
 --
