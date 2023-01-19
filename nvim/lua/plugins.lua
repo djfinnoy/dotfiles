@@ -24,14 +24,18 @@ return require('packer').startup(function()
   }
   use 'nvim-telescope/telescope-file-browser.nvim'
 
-  --
   -- Language server stuff
   use {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
   }
-  --
+
+  -- Language specific stuff
+  use 'hashivim/vim-terraform'
+  use 'elixir-editors/vim-elixir'
+  use 'ray-x/go.nvim'
+
   -- Misc
   use 'nvim-treesitter/nvim-treesitter'        -- Syntax highlighting
   use 'Raimondi/delimitMate'                   -- Auto-close bracket
@@ -39,8 +43,6 @@ return require('packer').startup(function()
   use 'ntpeters/vim-better-whitespace'         -- Handle whitespace
   use 'ggandor/lightspeed.nvim'
   use 'lambdalisue/suda.vim'
-  use 'hashivim/vim-terraform'
-  use 'elixir-editors/vim-elixir'
   use {
       'iamcco/markdown-preview.nvim',
       run = function() vim.fn['mkdp#util#install']() end,

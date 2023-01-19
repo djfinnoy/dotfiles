@@ -1,4 +1,5 @@
-export PATH=$HOME/.krew/bin:/bin:$HOME/bin:$HOME/.local/bin:/usr/local/bin:/opt/local/bin:$PATH
+# Add krew to path
+export PATH=$HOME/.krew/bin:/bin:$HOME/bin:$HOME/.local/bin:/usr/local/bin:/opt/local/bin:$HOME/.garden/bin:$PATH
 
 # ensure UTF-8 is set as character encoding
 export LC_ALL=en_US.UTF-8
@@ -35,4 +36,7 @@ source "$(asdf where gcloud)/path.zsh.inc"
 unalias ts  # tmux plugin alias, replaced by function
 RPROMPT='$(tf_prompt_info)'
 eval "$(direnv hook zsh)"
+
+# Add GOPATH/bin to path (from nvim plugin)
+export PATH=$PATH:"$(go env GOPATH || "")/bin"
 

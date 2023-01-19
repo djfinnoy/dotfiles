@@ -86,6 +86,13 @@ require("mason-lspconfig").setup({
     }
 })
 
+require("mason-lspconfig").setup_handlers {
+  -- automatically load installed language servers
+  function (server_name)
+      require("lspconfig")[server_name].setup {}
+  end
+}
+
 -- nvim-tree-sitter
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -163,6 +170,9 @@ cmp.setup.cmdline(':', {
 -- vim-terraform
 vim.g.terraform_align = 1
 vim.g.terraform_fmt_on_save = 1
+
+-- go.nvim
+require('go').setup()
 
 -- neoclip
 require'telescope'.load_extension('neoclip')

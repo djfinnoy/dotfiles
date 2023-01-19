@@ -1,0 +1,9 @@
+# List deprecated APIs present in Kubernetes cluster
+# https://kubernetes.io/blog/2020/09/03/warnings/#metrics
+
+kdeprecated () {
+  kubectl get --raw /metrics | prom2json | jq '
+    .[] | select(.name=="apiserver_requested_deprecated_apis").metrics[].labels
+  '
+}
+
