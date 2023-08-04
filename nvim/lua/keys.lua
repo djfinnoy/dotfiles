@@ -23,12 +23,8 @@ map('n', '<C-J>', '<C-W><C-J>')
 map('n', '<C-K>', '<C-W><C-K>')
 map('n', '<C-L>', '<C-W><C-L>')
 map('n', '<C-x>', ':bdelete!<CR>')
-map('n', 'gt', ':bnext<CR>')
-map('n', 'gT', ':bprev<CR>')
 
 -- Navigate tabs
-map('n', '<C-W>gt', ':tabnext<CR>')
-map('n', '<C-W>gT', ':tabprev<CR>')
 map('n', '<C-W>x', ':tabclose<CR>')
 map('n', '<C-W>c', ':tabnew<CR>')
 
@@ -58,16 +54,15 @@ map('', '<Leader>F', '<cmd>lua require \'telescope\'.extensions.file_browser.fil
 map('n', '<Leader>p', ':Telescope neoclip<CR>')
 
 -- Neoterm
+map('n', '<Leader>t', ':Tnew<CR> | :set ma<CR>')
 map('n', '<Leader>z', ':sp | :Tnew<CR> | :set ma<CR>')
+map('n', '<Leader>Z', ':vsp | :Tnew<CR> | :set ma<CR>')
 map('n', '<A-e>', ':TREPLSendFile<CR>')
 map('n', '<C-e>', ':TREPLSendLine<CR>')
 map('v', '<C-e>', ':TREPLSendSelection<CR>')
 
 -- Markdown preview
 map('n', '<Leader>md', ':MarkdownPreviewToggle<CR>')
-
--- Lightspeed
-map('n', 'c', 'cl')  -- Make `c` behave like `s` does without the lightspeed plugin
 
 -- Toggle LSP diagnostics
 vim.g.diagnostics_visible = true

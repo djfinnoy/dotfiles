@@ -76,7 +76,6 @@ require("mason-lspconfig").setup()
 --- language servers
 require("mason-lspconfig").setup({
     ensure_installed = {
-      "sumneko_lua",
       "bashls",
       "elixirls",
       "gopls",
@@ -177,3 +176,5 @@ require('go').setup()
 -- neoclip
 require'telescope'.load_extension('neoclip')
 
+-- leap
+require('leap').add_default_mappings()

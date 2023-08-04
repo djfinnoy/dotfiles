@@ -6,11 +6,11 @@ return require('packer').startup(function()
   use 'shaunsingh/nord.nvim'  -- Colorscheme
   use {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = {'nvim-tree/nvim-web-devicons', opt = true}
   }
   use {
     'kdheepak/tabline.nvim',
-    requires = { {'kyazdani42/nvim-web-devicons', opt = true} }
+    requires = { {'nvim-tree/nvim-web-devicons', opt = true} }
   }
 
   -- Fuzzy finder
@@ -41,7 +41,12 @@ return require('packer').startup(function()
   use 'Raimondi/delimitMate'                   -- Auto-close bracket
   use 'kassio/neoterm'                         -- Terminal with REPL
   use 'ntpeters/vim-better-whitespace'         -- Handle whitespace
-  use 'ggandor/lightspeed.nvim'
+  use {
+    'ggandor/leap.nvim',
+    requires = {
+      'tpope/vim-repeat',
+    }
+  }
   use 'lambdalisue/suda.vim'
   use {
       'iamcco/markdown-preview.nvim',

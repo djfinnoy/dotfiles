@@ -12,6 +12,9 @@ export EDITOR=nvim
 ZSH_TMUX_AUTOSTART=false
 ZSH_TMUX_UNICODE=true
 
+# Make Docker config available to Helm (auth stuff)
+DOCKER_CONFIG="~/.docker/config.json"
+
 # Path to zsh functions
 fpath=(~/.config/zsh/functions $fpath)
 autoload -U $fpath[1]/*(.:t)
