@@ -58,8 +58,14 @@ require('nord').set()
 --- Lua line / tabline
 require'lualine'.setup {
   options = {
-    theme = 'nord'
+    theme = 'nord',
+  },
+  sections = {
+    lualine_c = {
+      {'filename', path = 4}
+    }
   }
+
 }
 
 require'tabline'.setup {
