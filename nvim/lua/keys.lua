@@ -23,6 +23,8 @@ map('n', '<C-J>', '<C-W><C-J>')
 map('n', '<C-K>', '<C-W><C-K>')
 map('n', '<C-L>', '<C-W><C-L>')
 map('n', '<C-x>', ':bdelete!<CR>')
+map('n', 'gt', ':bnext<CR>')
+map('n', 'gT', ':bprev<CR>')
 
 -- Navigate tabs
 map('n', '<C-W>x', ':tabclose<CR>')
