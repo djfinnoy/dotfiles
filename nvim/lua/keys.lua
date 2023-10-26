@@ -42,7 +42,6 @@ map('t', '<C-L>', [[<C-\><C-n><C-W><C-L>]])
 map('n', '<Leader>ev', ':vsp $MYVIMRC<CR>')
 map('n', '<Leader>n', ':nohlsearch<CR>')
 map('', '¤', '$')
-map('i', '<C-e>', '|>')
 
 --
 -- Plugin keybindings

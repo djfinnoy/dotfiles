@@ -1,0 +1,8 @@
+# Quick git push for bumping ArgoCD
+ab () {
+
+  git add .
+  git commit -m "ArgoCD bump"
+  git push
+}
+

@@ -1,0 +1,5 @@
+# Convert bytes to Mib
+
+mib () {
+  R --slave -e "$1 / 1048576"
+}

@@ -35,6 +35,7 @@ return require('packer').startup(function()
   use 'hashivim/vim-terraform'
   use 'elixir-editors/vim-elixir'
   use 'ray-x/go.nvim'
+  use 'towolf/vim-helm'
 
   -- Misc
   use 'nvim-treesitter/nvim-treesitter'        -- Syntax highlighting
@@ -71,6 +72,22 @@ return require('packer').startup(function()
     },
     config = function()
       require('neoclip').setup()
+    end,
+  }
+  use {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          auto_refresh = true,
+        },
+        suggestion = {
+          auto_trigger = true,
+        },
+        filetypes = {
+          yaml = true
+        }
+      })
     end,
   }
 end)

@@ -87,7 +87,7 @@ require("mason-lspconfig").setup({
       "gopls",
       "terraformls",
       "yamlls",
-      "jedi_language_server"
+      "jedi_language_server",
     }
 })
 
@@ -144,10 +144,11 @@ cmp.setup ({
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-  },
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  }),
   sources = cmp.config.sources(
     {
       { name = 'nvim_lsp'},
@@ -184,3 +185,4 @@ require'telescope'.load_extension('neoclip')
 
 -- leap
 require('leap').add_default_mappings()
+

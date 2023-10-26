@@ -9,8 +9,8 @@ kpull () {
   else
     REGION="$3"
   fi
-  
+
+  export USE_GKE_GCLOUD_AUTH_PLUGIN=True
   gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT
-  kubectl config rename-context $(kubectl config current-context | tr -d '\r') "$PROJECT-$CLUSTER"
 }
 
