@@ -1,0 +1,52 @@
+k9s:
+  liveViewAutoRefresh: false
+  refreshRate: 2
+  maxConnRetry: 5
+  enableMouse: false
+  enableImageScan: false
+  headless: false
+  logoless: false
+  crumbsless: false
+  readOnly: false
+  noExitOnCtrlC: false
+  noIcons: true
+  shellPod:
+    image: busybox:1.35.0
+    namespace: default
+    limits:
+      cpu: 100m
+      memory: 100Mi
+  skipLatestRevCheck: false
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: -1
+    fullScreenLogs: false
+    textWrap: false
+    showTime: false
+  currentContext: bulder-dev-blue
+  currentCluster: gke_bulder-dev_europe-west1-b_blue
+  keepMissingClusters: false
+  clusters:
+    gke_bulder-dev_europe-west1-b_blue:
+      namespace:
+        active: backend-apps
+        lockFavorites: false
+        favorites:
+        - kube-system
+        - backend-apps
+        - default
+      view:
+        active: portforward
+      featureGates:
+        nodeShell: false
+      portForwardAddress: localhost
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
+  screenDumpDir: /tmp/k9s-screens-df
+  disablePodCounting: false
