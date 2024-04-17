@@ -7,6 +7,7 @@ export LANG=en_US.UTF-8
 
 # set default text editor
 export EDITOR=nvim
+export VISUAL=nvim
 
 # tmux
 ZSH_TMUX_AUTOSTART=false
@@ -27,16 +28,14 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
 DEFAULT_USER=df
 prompt_context(){}
-plugins=(git tmux kubectl asdf terraform)
+plugins=(git tmux kubectl asdf terraform gcloud)
 
 # Completions
 source $ZSH/oh-my-zsh.sh
 source <(kubectl completion zsh)
-source "$(asdf where gcloud)/completion.zsh.inc"
-source "$(asdf where gcloud)/path.zsh.inc"
 
 # misc
-unalias ts  # tmux plugin alias, replaced by function
+#unalias ts  # tmux plugin alias, replaced by function
 RPROMPT='$(tf_prompt_info)'
 eval "$(direnv hook zsh)"
 

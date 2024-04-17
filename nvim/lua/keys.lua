@@ -11,6 +11,22 @@ local opt = vim.opt
 -- Map leader key to ,
 vim.g.mapleader = ','
 
+-- Reload config
+function _G.reload_config()
+  for name,_ in pairs(package.loaded) do
+    if name:match('^user') and not name:match('nvim-tree') then
+      package.loaded[name] = nil
+    end
+  end
+
+  dofile(vim.env.MYVIMRC)
+  vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+end
+
+map('n', '<Leader>ev', ':source $MYVIMRC<CR>')
+map('n', '<Leader>ev', '<cmd>lua reload_config()<CR>', {noremap = true, silent = true})
+
+
 -- Reseize panes
 map('', '<A-h>', '<C-W><', {silent})
 map('', '<A-j>', '<C-W>-', {silent})
@@ -39,10 +55,9 @@ map('t', '<C-K>', [[<C-\><C-n><C-W><C-K>]])
 map('t', '<C-L>', [[<C-\><C-n><C-W><C-L>]])
 
 -- Misc
-map('n', '<Leader>ev', ':vsp $MYVIMRC<CR>')
 map('n', '<Leader>n', ':nohlsearch<CR>')
 map('', '¤', '$')
-
+map('i', '<C-t>', '|>')
 --
 -- Plugin keybindings
 --
@@ -65,7 +80,7 @@ map('v', '<C-e>', ':TREPLSendSelection<CR>')
 -- Markdown preview
 map('n', '<Leader>md', ':MarkdownPreviewToggle<CR>')
 
--- Toggle LSP diagnostics
+-- LSP diagnostics
 vim.g.diagnostics_visible = true
 function _G.toggle_diagnostics()
   if vim.g.diagnostics_visible then
@@ -78,3 +93,34 @@ function _G.toggle_diagnostics()
 end
 map('n', '<Leader>l', ':call v:lua.toggle_diagnostics()<CR>', {silent})
 
+map("n", "<Leader>ll", ':lua vim.diagnostic.open_float()<CR>' )
+
+-- vim-go
+map('n', '<leader>g', '<Plug>(go-def-split)')
+
+-- copilot
+--map('', '<Leader>cp', ':CopilotChatOpen<CR>')
+
+function _G.cp_with_buffer_in_context()
+  local input = vim.fn.input("Quick Chat: ")
+  if input ~= "" then
+    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+  else
+    vim.cmd("CopilotChat")
+  end
+end
+function _G.cp_telescope_help()
+  local actions = require("CopilotChat.actions")
+  require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+end
+function _G.cp_telescope_prompt()
+  local actions = require("CopilotChat.actions")
+  require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+end
+
+map('n', '<Leader>cp', '<cmd>lua cp_with_buffer_in_context()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cch', '<cmd>lua cp_telescope_help()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>ccp', '<cmd>lua cp_telescope_prompt()<CR>', {noremap = true, silent = true})
+
+-- NERDTree
+map('n', '<C-n>', ':NERDTreeToggle<CR>')

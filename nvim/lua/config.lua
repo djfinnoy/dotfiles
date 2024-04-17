@@ -15,7 +15,7 @@ opt.shiftround = true               -- Round indent
 opt.shiftwidth = 2                  -- Size of an indent
 opt.showmatch = true                -- Show matching bracets
 opt.smartcase = true                -- Do not ignore case with capitals
-opt.smartindent = true              -- Insert indents automatically
+opt.smartindent = false             -- Insert indents automatically
 opt.splitbelow = true               -- Put new windows below current
 opt.splitright = true               -- Put new windows right of current
 opt.tabstop = 2                     -- Number of spaces tabs count for
@@ -36,14 +36,6 @@ vim.api.nvim_command('au BufRead,BufNewFile *.json.tpl set filetype=json')
 
 -- No linenumbers in terminal panes
 vim.api.nvim_command('au TermOpen * setlocal nonumber norelativenumber')
-
--- Spell check in certain filetypes
-vim.api.nvim_command([[
-  augroup spellcheck
-    au FileType markdown setlocal spell spelllang=en_gb
-    au BufRead,BufNewFile *.md setlocal spell spellang=en_gb
-  augroup END
-]])
 
 --
 -- Plugin settings
@@ -84,10 +76,10 @@ require("mason-lspconfig").setup({
     ensure_installed = {
       "bashls",
       "elixirls",
-      "gopls",
       "terraformls",
       "yamlls",
-      "jedi_language_server",
+      "pylsp",
+      "gopls"
     }
 })
 
@@ -98,6 +90,38 @@ require("mason-lspconfig").setup_handlers {
   end
 }
 
+require("lspconfig").typos_lsp.setup {
+  filetypes = { "markdown" }
+}
+
+require'lspconfig'.pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'E121', 'W391'},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
+
+require'lspconfig'.lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {
+          "cmd",
+          "vim",
+          "use",
+          "silent"
+        }
+      }
+    }
+  }
+}
+
 -- nvim-tree-sitter
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -106,12 +130,12 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "bash",
     "dockerfile",
-    "go",
     "hcl",
     "json",
     "yaml",
     "elixir",
-    "lua"
+    "lua",
+    "python"
   }
 }
 
@@ -136,27 +160,49 @@ vim.g.better_whitespace_guicolor = 'Gray'
 vim.g.current_line_whitespace_disabled_soft = 1
 
 -- nvim-cmp (autocompletions)
-opt.completeopt = "menu,menuone,noselect"
-local cmp= require'cmp'
+opt.completeopt = "menuone,noselect"
+local cmp= require('cmp')
+local lspkind = require('lspkind')
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
 cmp.setup ({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      require('luasnip').lsp_expand(args.body)
     end,
   },
+  preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
-    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ["<Tab>"] = vim.schedule_wrap(function(fallback)
+      if cmp.visible() and has_words_before() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        fallback()
+      end
+    end),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
   }),
   sources = cmp.config.sources(
     {
-      { name = 'nvim_lsp'},
-      { name = 'vsnip' }
+      { name = "copilot", group_index = 2 },
+      { name = "nvim_lsp", group_index = 2 },
+      { name = "path", group_index = 2 },
+      { name = "luasnip", group_index = 2 },
     }, {
       {name = 'buffer' }
     }
-  )
+  ),
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = "symbol",
+      max_width = 50,
+      symbol_map = { Copilot = "" }
+    })
+  }
 })
 
 cmp.setup.cmdline('/', {
@@ -177,12 +223,28 @@ cmp.setup.cmdline(':', {
 vim.g.terraform_align = 1
 vim.g.terraform_fmt_on_save = 1
 
--- go.nvim
-require('go').setup()
-
 -- neoclip
 require'telescope'.load_extension('neoclip')
 
 -- leap
 require('leap').add_default_mappings()
+
+-- indentation helper
+require("ibl").setup()
+
+-- neoterm
+vim.g.neoterm_repl_python = 'ipython --no-autoindent'
+vim.g.neoterm_clean_startup = 1
+vim.g.neoterm_repl_ipython_magic = 1
+vim.g.neoterm_repl_cellmarker = '^# %%'
+
+-- copilot chat
+require("CopilotChat").setup {
+  debug = false,
+  prompts = {
+    Review = {
+      callback = function() end
+    }
+  },
+}
 

@@ -34,14 +34,16 @@ return require('packer').startup(function()
   -- Language specific stuff
   use 'hashivim/vim-terraform'
   use 'elixir-editors/vim-elixir'
-  use 'ray-x/go.nvim'
   use 'towolf/vim-helm'
+  use 'Vimjas/vim-python-pep8-indent'
 
   -- Misc
+  use 'preservim/nerdtree'
   use 'nvim-treesitter/nvim-treesitter'        -- Syntax highlighting
   use 'Raimondi/delimitMate'                   -- Auto-close bracket
   use 'kassio/neoterm'                         -- Terminal with REPL
   use 'ntpeters/vim-better-whitespace'         -- Handle whitespace
+  use 'lukas-reineke/indent-blankline.nvim'    -- Indentation guides
   use {
     'ggandor/leap.nvim',
     requires = {
@@ -54,6 +56,7 @@ return require('packer').startup(function()
       run = function() vim.fn['mkdp#util#install']() end,
       ft = {'markdown'}
   }
+
   use {                                        -- Auto-completions
     'hrsh7th/nvim-cmp',
     requires = {
@@ -62,9 +65,41 @@ return require('packer').startup(function()
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-vsnip',
-      'hrsh7th/vim-vsnip'
+      'hrsh7th/vim-vsnip',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind.nvim'
     }
   }
+
+  use {
+    "zbirenbaum/copilot.lua",
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+    },
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end
+  }
+  use {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      "zbirenbaum/copilot.lua",
+      "nvim-lua/plenary.nvim"
+    },
+  }
+
+  use {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+        require("copilot_cmp").setup()
+    end,
+  }
+
   use {
     "AckslD/nvim-neoclip.lua",
     requires = {
@@ -74,21 +109,8 @@ return require('packer').startup(function()
       require('neoclip').setup()
     end,
   }
-  use {
-    "zbirenbaum/copilot.lua",
-    config = function()
-      require("copilot").setup({
-        panel = {
-          auto_refresh = true,
-        },
-        suggestion = {
-          auto_trigger = true,
-        },
-        filetypes = {
-          yaml = true
-        }
-      })
-    end,
-  }
+
+  use 'fatih/vim-go'
+
 end)
 
