@@ -73,34 +73,6 @@ return require('packer').startup(function()
   }
 
   use {
-    "zbirenbaum/copilot.lua",
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-    },
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end
-  }
-  use {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      "zbirenbaum/copilot.lua",
-      "nvim-lua/plenary.nvim"
-    },
-  }
-
-  use {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-        require("copilot_cmp").setup()
-    end,
-  }
-
-  use {
     "AckslD/nvim-neoclip.lua",
     requires = {
       {'nvim-telescope/telescope.nvim'},

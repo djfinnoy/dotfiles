@@ -42,3 +42,5 @@ eval "$(direnv hook zsh)"
 # Add GOPATH/bin to path (from nvim plugin)
 export PATH=$PATH:"$(go env GOPATH || "")/bin"
 
+# Python stuff
+export IPYTHON_PYTHON=/home/df/.asdf/shims/python

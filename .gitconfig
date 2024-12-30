@@ -1,9 +1,8 @@
-[include]
-  path = ~/.gitconfig.local
 [user]
-  email = djfinnoy@protonmail.com
-  name = Didrik Finnøy
+	email = djfinnoy@protonmail.com
+[credential]
+	helper = cache
 [core]
-  pager = cat
-[alias]
-  lg = log -5 --reverse
+	pager = cat
+[url "github.com:"]
+	insteadOf = https://github.com/

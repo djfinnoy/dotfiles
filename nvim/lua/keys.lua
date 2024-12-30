@@ -23,7 +23,6 @@ function _G.reload_config()
   vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
 end
 
-map('n', '<Leader>ev', ':source $MYVIMRC<CR>')
 map('n', '<Leader>ev', '<cmd>lua reload_config()<CR>', {noremap = true, silent = true})
 
 
@@ -46,6 +45,10 @@ map('n', 'gT', ':bprev<CR>')
 map('n', '<C-W>x', ':tabclose<CR>')
 map('n', '<C-W>c', ':tabnew<CR>')
 
+-- Navigate errors
+map('n', '<Leader>e', '<cmd> lua vim.diagnostic.goto_next()<CR>')
+map('n', '<Leader>E', '<cmd> lua vim.diagnostic.goto_prev()<CR>')
+
 -- Terminal
 map('t', '<ESC>', [[<C-\><C-n>]])
 map('t', '<C-X>', [[<C-\><C-n>:q!<CR>]])
@@ -66,8 +69,9 @@ map('i', '<C-t>', '|>')
 map('', '<Leader>f', ':Telescope find_files<CR>')
 map('', '<Leader>b', ':Telescope buffers<CR>')
 map('', '<Leader>s', ':Telescope live_grep<CR>')
+map('', '<Leader>S', ':Telescope lsp_references<CR>')
 map('', '<Leader>F', '<cmd>lua require \'telescope\'.extensions.file_browser.file_browser()<CR>')
-map('n', '<Leader>p', ':Telescope neoclip<CR>')
+map('', '<Leader>p', ':Telescope neoclip<CR>')
 
 -- Neoterm
 map('n', '<Leader>t', ':Tnew<CR> | :set ma<CR>')
@@ -96,31 +100,8 @@ map('n', '<Leader>l', ':call v:lua.toggle_diagnostics()<CR>', {silent})
 map("n", "<Leader>ll", ':lua vim.diagnostic.open_float()<CR>' )
 
 -- vim-go
-map('n', '<leader>g', '<Plug>(go-def-split)')
-
--- copilot
---map('', '<Leader>cp', ':CopilotChatOpen<CR>')
-
-function _G.cp_with_buffer_in_context()
-  local input = vim.fn.input("Quick Chat: ")
-  if input ~= "" then
-    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-  else
-    vim.cmd("CopilotChat")
-  end
-end
-function _G.cp_telescope_help()
-  local actions = require("CopilotChat.actions")
-  require("CopilotChat.integrations.telescope").pick(actions.help_actions())
-end
-function _G.cp_telescope_prompt()
-  local actions = require("CopilotChat.actions")
-  require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-end
-
-map('n', '<Leader>cp', '<cmd>lua cp_with_buffer_in_context()<CR>', {noremap = true, silent = true})
-map('n', '<Leader>cch', '<cmd>lua cp_telescope_help()<CR>', {noremap = true, silent = true})
-map('n', '<Leader>ccp', '<cmd>lua cp_telescope_prompt()<CR>', {noremap = true, silent = true})
+map('n', '<leader>gd', '<Plug>(go-def-split)')
+map('n', '<leader>gl', '<Plug>(go-rename)')
 
 -- NERDTree
 map('n', '<C-n>', ':NERDTreeToggle<CR>')

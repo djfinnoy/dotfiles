@@ -1,4 +1,3 @@
-local cmd = vim.cmd
 local opt = vim.opt
 
 --
@@ -33,6 +32,7 @@ vim.api.nvim_command([[
 -- Syntax highlighting for *.tpl files
 vim.api.nvim_command('au BufRead,BufNewFile *.y*ml.tpl set filetype=yaml')
 vim.api.nvim_command('au BufRead,BufNewFile *.json.tpl set filetype=json')
+
 
 -- No linenumbers in terminal panes
 vim.api.nvim_command('au TermOpen * setlocal nonumber norelativenumber')
@@ -77,9 +77,10 @@ require("mason-lspconfig").setup({
       "bashls",
       "elixirls",
       "terraformls",
-      "yamlls",
       "pylsp",
-      "gopls"
+      "gopls",
+      "helm_ls",
+      "templ"
     }
 })
 
@@ -135,7 +136,8 @@ require'nvim-treesitter.configs'.setup {
     "yaml",
     "elixir",
     "lua",
-    "python"
+    "python",
+    "templ"
   }
 }
 
@@ -188,7 +190,6 @@ cmp.setup ({
   }),
   sources = cmp.config.sources(
     {
-      { name = "copilot", group_index = 2 },
       { name = "nvim_lsp", group_index = 2 },
       { name = "path", group_index = 2 },
       { name = "luasnip", group_index = 2 },
@@ -200,7 +201,6 @@ cmp.setup ({
     format = lspkind.cmp_format({
       mode = "symbol",
       max_width = 50,
-      symbol_map = { Copilot = "" }
     })
   }
 })
@@ -238,13 +238,12 @@ vim.g.neoterm_clean_startup = 1
 vim.g.neoterm_repl_ipython_magic = 1
 vim.g.neoterm_repl_cellmarker = '^# %%'
 
--- copilot chat
-require("CopilotChat").setup {
-  debug = false,
-  prompts = {
-    Review = {
-      callback = function() end
-    }
-  },
-}
+
+-- templ
+vim.filetype.add({
+    extension = {
+        templ = "templ",
+    },
+})
+
 
