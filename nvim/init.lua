@@ -1,4 +1,4 @@
 -- Load the configuration files under ./lua
-require('plugins')
-require('config')
-require('keys')
+require('config.lazy')
+require('config.settings')
+require('config.keys')

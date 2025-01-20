@@ -1,8 +1,6 @@
 [user]
 	email = djfinnoy@protonmail.com
-[credential]
-	helper = cache
 [core]
 	pager = cat
-[url "github.com:"]
+[url "git@github.com:"]
 	insteadOf = https://github.com/

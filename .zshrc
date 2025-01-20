@@ -1,5 +1,5 @@
 # Add krew to path
-export PATH=$HOME/.krew/bin:/bin:$HOME/bin:$HOME/.local/bin:/usr/local/bin:/opt/local/bin:/bin:$PATH
+export PATH=$HOME/.krew/bin:/bin:$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/go/bin:/opt/local/bin:/bin:$PATH
 
 # ensure UTF-8 is set as character encoding
 export LC_ALL=en_US.UTF-8
@@ -28,19 +28,13 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
 DEFAULT_USER=df
 prompt_context(){}
-plugins=(git tmux kubectl asdf terraform gcloud)
+plugins=(git tmux kubectl terraform gcloud)
 
 # Completions
 source $ZSH/oh-my-zsh.sh
 source <(kubectl completion zsh)
 
 # misc
-#unalias ts  # tmux plugin alias, replaced by function
 RPROMPT='$(tf_prompt_info)'
-eval "$(direnv hook zsh)"
+export GOPRIVATE=github.com/bulderbank/*
 
-# Add GOPATH/bin to path (from nvim plugin)
-export PATH=$PATH:"$(go env GOPATH || "")/bin"
-
-# Python stuff
-export IPYTHON_PYTHON=/home/df/.asdf/shims/python

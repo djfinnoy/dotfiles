@@ -80,6 +80,7 @@ require("mason-lspconfig").setup({
       "pylsp",
       "gopls",
       "helm_ls",
+      "lua_ls",
       "templ"
     }
 })
@@ -143,6 +144,11 @@ require'nvim-treesitter.configs'.setup {
 
 -- telescope
 require('telescope').setup {
+  defaults = {
+    preview = {
+      treesitter = false,
+    }
+  },
   pickers = {
     find_files = {
       theme = "dropdown"
@@ -223,9 +229,6 @@ cmp.setup.cmdline(':', {
 vim.g.terraform_align = 1
 vim.g.terraform_fmt_on_save = 1
 
--- neoclip
-require'telescope'.load_extension('neoclip')
-
 -- leap
 require('leap').add_default_mappings()
 
@@ -245,5 +248,4 @@ vim.filetype.add({
         templ = "templ",
     },
 })
-
 
