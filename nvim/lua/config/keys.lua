@@ -71,7 +71,6 @@ map('', '<Leader>b', ':Telescope buffers<CR>')
 map('', '<Leader>s', ':Telescope live_grep<CR>')
 map('', '<Leader>S', ':Telescope lsp_references<CR>')
 map('', '<Leader>F', '<cmd>lua require \'telescope\'.extensions.file_browser.file_browser()<CR>')
-map('', '<Leader>p', ':Telescope neoclip<CR>')
 
 -- Neoterm
 map('n', '<Leader>t', ':Tnew<CR> | :set ma<CR>')

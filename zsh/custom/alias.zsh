@@ -1,6 +1,6 @@
 # kubectl stuff
-alias kcx="kubectl ctx"
-alias kns="kubectl ns"
+alias kcx="kubectx"
+alias kns="kubens"
 
 # tmux stuff
 alias tksa="tmux kill-session -a"
@@ -16,4 +16,7 @@ alias vim="nvim"
 
 # Cd to work dir
 alias cdw="cd  ~/Projects/bulder"
+
+# Authenticated Google curl
+alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json"'
 
